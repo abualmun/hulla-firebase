@@ -1,0 +1,24 @@
+{
+  "name": "hulla-firebase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abualmun/hulla-firebase.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abualmun/hulla-firebase/issues"
+  },
+  "homepage": "https://github.com/abualmun/hulla-firebase#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "firebase": "^9.6.7"
+  }
+}
