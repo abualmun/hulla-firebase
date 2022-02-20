@@ -1,5 +1,5 @@
 import { async } from "@firebase/util";
-import express from "express";
+import express, { json } from "express";
 import { initializeApp } from "firebase/app";
 import {
     getFirestore, collection, getDocs,
@@ -68,7 +68,7 @@ app.post('/login/students', async (req, res) => {
         })
         console.log("success")
     } else {
-        res.send("can't find a student with this username.")
+        res.send("ERROR")
         console.log("bruh..")
     }
 })
@@ -80,9 +80,11 @@ app.post('/login/teachers', async (req, res) => {
     const q = query(teachersRef, where("username", "==", username))
     const querySnapshot = await getDocs(q);
     if (!querySnapshot.empty) {
-        querySnapshot.forEach((doc) => {
-            res.send(doc.data())
-        })
+        const q = query(studentsRef, where("teacher", "==", username))
+        const queryStudents = await getDocs(q);
+        studentsList = []
+        queryStudents.docs.forEach((d)=>{studentsList.push(d)})
+        res.send({...querySnapshot.docs[0].data(),"studentsList":studentsList});
         console.log("success")
     } else {
         res.send("can't find a teacher with this username.")
