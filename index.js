@@ -18,7 +18,7 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 const app = express()
 app.use(express.json())
-app.use(cors())
+
 const port = process.env.PORT || 5000
 
 // Databases
@@ -61,6 +61,9 @@ app.post('/abualmun/register/teachers', function async(req, res) {
 
 //called when user tries to login.
 app.post('/login/students', async (req, res) => {
+res.header("Access-Control-Allow-Origin","*")
+res.header("Access-Control-Allow-Headres","Origin, X-Requested-With, Content-Type, Accept")
+
     const username = req.body.username
     const q = query(studentsRef, where("username", "==", username))
     const querySnapshot = await getDocs(q);
