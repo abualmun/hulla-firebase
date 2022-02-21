@@ -1,6 +1,6 @@
 import { async } from "@firebase/util";
 import express, { json } from "express";
-import { cors } from "cors";
+import cors from "cors";
 import { initializeApp } from "firebase/app";
 import {
     getFirestore, collection, getDocs,
@@ -60,7 +60,7 @@ app.post('/abualmun/register/teachers', function async(req, res) {
 
 
 //called when user tries to login.
-app.post('/login/students', async (req, res) => {
+app.post('/login/students',cors(), async (req, res) => {
 
     const username = req.body.username
     const q = query(studentsRef, where("username", "==", username))
