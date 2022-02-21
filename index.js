@@ -60,7 +60,7 @@ app.post('/abualmun/register/teachers', function async(req, res) {
 
 
 //called when user tries to login.
-app.post('/login/students',cors() ,async (req, res) => {
+app.post('/login/students', async (req, res) => {
 
     const username = req.body.username
     const q = query(studentsRef, where("username", "==", username))
