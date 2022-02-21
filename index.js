@@ -28,7 +28,7 @@ const studentsRef = collection(db, 'students');
 const recordsRef = collection(db, 'records');
 
 //called when try to register
-app.post('/abualmun/register/students', function (req, res) {
+app.post('/abualmun/register/students', cors(), function (req, res) {
     const data = req.body
     addDoc(studentsRef, {
         username: data.username,
@@ -43,7 +43,7 @@ app.post('/abualmun/register/students', function (req, res) {
 })
 
 //called when try to register
-app.post('/abualmun/register/teachers', function async(req, res) {
+app.post('/abualmun/register/teachers', cors(), function async(req, res) {
 
     const data = req.body
     addDoc(teachersRef, {
@@ -60,7 +60,7 @@ app.post('/abualmun/register/teachers', function async(req, res) {
 
 
 //called when user tries to login.
-app.post('/login/students',cors(), async (req, res) => {
+app.post('/login/students', cors(), async (req, res) => {
 
     const username = req.body.username
     const q = query(studentsRef, where("username", "==", username))
@@ -78,7 +78,7 @@ app.post('/login/students',cors(), async (req, res) => {
 
 
 //called when user tries to login.
-app.post('/login/teachers', async (req, res) => {
+app.post('/login/teachers', cors(), async (req, res) => {
     const username = req.body.username
     const q = query(teachersRef, where("username", "==", username))
     const querySnapshot = await getDocs(q);
@@ -99,7 +99,7 @@ app.post('/login/teachers', async (req, res) => {
 
 
 //called when requesting records
-app.post('/records', async (req, res) => {
+app.post('/records', cors(), async (req, res) => {
 
     const data = req.body
     const returnedQuery = []
@@ -118,7 +118,7 @@ app.post('/records', async (req, res) => {
 })
 
 //called when adding a new record
-app.post('/records/add', async (req, res) => {
+app.post('/records/add', cors(), async (req, res) => {
     const data = req.body
     try {
         const doc = await addDoc(recordsRef, {
@@ -138,7 +138,7 @@ app.post('/records/add', async (req, res) => {
 
 
 //called when deleting record
-app.post('/records/delete', async (req, res) => {
+app.post('/records/delete', cors(), async (req, res) => {
     const data = req.body
     const docRef = doc(db, "records", data.id)
     try {
@@ -152,7 +152,7 @@ app.post('/records/delete', async (req, res) => {
 })
 
 //called when editing record
-app.post('/records/edit', async (req, res) => {
+app.post('/records/edit', cors(), async (req, res) => {
     const data = req.body
     const docRef = doc(db, "records", data.id)
     try {
