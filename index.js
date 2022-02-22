@@ -83,7 +83,8 @@ app.post('/login/teachers', cors(), async (req, res) => {
     const q = query(teachersRef, where("username", "==", username))
     const querySnapshot = await getDocs(q);
     if (!querySnapshot.empty) {
-        const q = query(studentsRef, where("teacher", "==", username))
+
+        const q = query(studentsRef, (querySnapshot.docs[0].data().isAdmin) ? where('teacher', "!=", "Bob") : where("teacher", "==", username))
         const queryStudents = await getDocs(q);
         var studentsList = []
         queryStudents.docs.forEach((d) => { studentsList.push(d.data()) })
