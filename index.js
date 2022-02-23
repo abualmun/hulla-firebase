@@ -18,7 +18,9 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 const app = express()
 app.use(express.json())
-app.use(cors())
+app.use(cors(
+    {origin: "*"}
+))
 const port = process.env.PORT || 5000
 
 // Databases
@@ -78,7 +80,7 @@ app.post('/login/students', cors(), async (req, res) => {
 
 
 //called when user tries to login.
-app.post('/login/teachers', cors(), async (req, res) => {
+app.post('/login/teachers', async (req, res) => {
     const username = req.body.username
     const q = query(teachersRef, where("username", "==", username))
     const querySnapshot = await getDocs(q);
