@@ -19,6 +19,7 @@
   "homepage": "https://github.com/abualmun/hulla-firebase#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "esm": "^3.2.25",
     "express": "^4.17.3",
     "firebase": "^9.6.7"
   }
