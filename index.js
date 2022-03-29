@@ -1,4 +1,4 @@
-const express = require('express');
+import express, { json } from "express";
 import cors from "cors";
 import { initializeApp } from "firebase/app";
 import {
@@ -42,7 +42,8 @@ app.post('/abualmun/register/students', cors(), function (req, res) {
             res.send("somthing went wrong")
         })
     } catch (err) {
-        res.statusCode(400).send(err)
+        res.statusCode = 400;
+        res.send(err)
     }
 })
 
@@ -60,7 +61,8 @@ app.post('/abualmun/register/teachers', cors(), function async(req, res) {
             res.send("somthing went wrong")
         })
     } catch (err) {
-        res.statusCode(400).send(err)
+        res.statusCode = 400;
+        res.send(err)
     }
 })
 
@@ -81,7 +83,8 @@ app.post('/login/students', cors(), async (req, res) => {
             console.log("bruh..")
         }
     } catch (err) {
-        res.statusCode(400).send(err)
+        res.statusCode = 400;
+        res.send(err)
     }
 })
 
@@ -105,7 +108,8 @@ app.post('/login/teachers', async (req, res) => {
             console.log("bruh..")
         }
     } catch (err) {
-        res.statusCode(400).send(err)
+        res.statusCode = 400;
+        res.send(err)
     }
 })
 
